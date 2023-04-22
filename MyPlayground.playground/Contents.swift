@@ -13,17 +13,17 @@ struct Order {
 }
 
 let pricingPlan = retrievePricingPlan()
-let order = retrieveOrder()
 let baseCharge = pricingPlan.base
 
 var charge: Int
 let chargePerUnit = pricingPlan.unit
+
+let order = retrieveOrder()
 let units = order.units
 
-var discount: Int
 charge = baseCharge + units * chargePerUnit
 let discountableUnits = max(units - pricingPlan.discountThreshold, 0)
-discount = discountableUnits * pricingPlan.discountFactor
+var discount = discountableUnits * pricingPlan.discountFactor
 
 if order.isRepeat {
     discount += 20
